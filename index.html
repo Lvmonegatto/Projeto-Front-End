@@ -1,80 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpeedFlow - Dashboard</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeedFlow - Dashboard</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <aside class="sidebar">
-        <div class="logo-container"><div class="logo">SpeedFlow</div></div>
-        <nav class="nav-menu">
-            <a href="index.html" class="nav-item active"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
-            <a href="tarefas.html" class="nav-item"><i class="fa-solid fa-pen"></i> Tarefas</a>
-            <a href="#" class="nav-item"><i class="fa-regular fa-calendar"></i> Planos semanais</a>
-            <a href="#" class="nav-item"><i class="fa-regular fa-circle-check"></i> Concluidas</a>
-        </nav>
-    </aside>
+<div class="container">
 
-    <main class="main-content">
-        <header class="top-header">
-            <div class="header-left"><i class="fa-solid fa-bars"></i></div>
-            <div class="header-right">
-                <i class="fa-regular fa-bell"></i>
-                <div class="user-profile"><span>aluno</span><img src="https://i.pravatar.cc/150?img=5"></div>
-            </div>
-        </header>
+  <aside class="sidebar">
 
-        <div class="dashboard-container">
-            <div class="page-header">
-                <h1>DASHBOARD</h1>
-                <button class="btn-add"><i class="fa-solid fa-plus"></i> adicionar tarefa</button>
-            </div>
+    <div class="logo">
+      <h2>SpeedFlow</h2>
+    </div>
 
-            <section class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-header"><span>Todas as tarefas</span><i class="fa-solid fa-check icon-green"></i></div>
-                    <div class="stat-value">10</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-header"><span>Completadas</span><i class="fa-solid fa-arrow-trend-up icon-green"></i></div>
-                    <div class="stat-value">2</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-header"><span>Alta prioridade</span><i class="fa-solid fa-circle-exclamation icon-red"></i></div>
-                    <div class="stat-value">3</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-header"><span>Tempo restante</span><i class="fa-regular fa-clock icon-orange"></i></div>
-                    <div class="stat-value">10h 30m</div>
-                </div>
-            </section>
+    <nav>
 
-            <section class="progress-section">
-                <div class="progress-header"><span>Progresso semanal</span><span>50%</span></div>
-                <div class="progress-track"><div class="progress-fill"></div></div>
-            </section>
+      <a href="index.html" class="active">🏠 Dashboard</a>
 
-            <section class="tasks-section">
-                <h2>Tarefas diárias</h2>
-                <div class="task-list">
-                    <div class="task-card">
-                        <div class="task-left">
-                            <div class="task-circle"></div>
-                            <div class="task-details">
-                                <span class="task-title">atividade</span>
-                                <div class="task-meta"><span>materia da atividade</span><span>tempo que vai gastar</span></div>
-                            </div>
-                        </div>
-                        <div class="task-right">Prioridade da<br>tarefa</div>
-                    </div>
-                </div>
-            </section>
+      <a href="tarefas.html">📝 Tarefas</a>
+
+      <a href="planossemanais.html">📅 Planos Semanais</a>
+
+      <a href="concluidas.html">✅ Concluídas</a>
+
+    </nav>
+
+  </aside>
+
+  <main class="main-content">
+
+    <header class="topbar">
+
+      <h1>Dashboard</h1>
+
+      <button class="btn">+ Nova tarefa</button>
+
+    </header>
+
+    <section class="cards">
+
+      <div class="card">
+        <h3>Todas as tarefas</h3>
+        <p>10</p>
+      </div>
+
+      <div class="card">
+        <h3>Completadas</h3>
+        <p>2</p>
+      </div>
+
+      <div class="card">
+        <h3>Alta prioridade</h3>
+        <p>3</p>
+      </div>
+
+      <div class="card">
+        <h3>Tempo restante</h3>
+        <p>10h 30m</p>
+      </div>
+
+    </section>
+
+    <section class="progress-section">
+
+      <div class="progress-title">
+        <span>Progresso semanal</span>
+        <span>50%</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+
+    </section>
+
+    <section class="tasks">
+
+      <h2>Tarefas diárias</h2>
+
+      <div class="task">
+
+        <div>
+          <h4>Estudar React</h4>
+          <p>Front-end • 2 horas</p>
         </div>
-    </main>
+
+        <span class="priority high">Alta</span>
+
+      </div>
+
+      <div class="task">
+
+        <div>
+          <h4>Banco de Dados</h4>
+          <p>Modelagem • 1 hora</p>
+        </div>
+
+        <span class="priority medium">Média</span>
+
+      </div>
+
+      <div class="task">
+
+        <div>
+          <h4>Projeto Python</h4>
+          <p>Backend • 3 horas</p>
+        </div>
+
+        <span class="priority low">Baixa</span>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
 </body>
 </html>
