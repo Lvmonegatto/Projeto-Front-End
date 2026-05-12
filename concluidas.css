@@ -1,0 +1,9 @@
+@import url('tarefas.css');
+
+.completed{
+  border-left:6px solid #10b981;
+}
+
+.completed span{
+  background:#10b981;
+}
