@@ -4,6 +4,8 @@ import StatsCard from "../components/StatsCard";
 import ProgressBar from "../components/ProgressBar";
 import TaskCard from "../components/TaskCard";
 
+import { useTasks } from "../context/TaskContext";
+
 import {
   FiClipboard,
   FiCheckCircle,
@@ -14,75 +16,80 @@ import {
 import "../styles/dashboard.css";
 
 export default function Dashboard() {
+  const { tasks } = useTasks();
+
+  const total = tasks.length;
+
+  const concluidas = tasks.filter(
+    (task) => task.completed
+  ).length;
+
+  const altaPrioridade = tasks.filter(
+    (task) => task.prioridade === "Alta"
+  ).length;
+
+  const tarefasRestantes = total - concluidas;
+
+  const progresso =
+    total > 0
+      ? Math.round((concluidas / total) * 100)
+      : 0;
 
   return (
     <div className="layout">
-
       <Sidebar />
 
       <main className="content">
-
         <Header titulo="Dashboard" />
 
         <div className="stats-grid">
-
           <StatsCard
             titulo="Todas as tarefas"
-            valor="10"
+            valor={total}
             icone={<FiClipboard />}
           />
 
           <StatsCard
             titulo="Completadas"
-            valor="2"
+            valor={concluidas}
             icone={<FiCheckCircle />}
           />
 
           <StatsCard
             titulo="Alta prioridade"
-            valor="3"
+            valor={altaPrioridade}
             icone={<FiAlertCircle />}
           />
 
           <StatsCard
-            titulo="Tempo restante"
-            valor="10h"
+            titulo="Pendentes"
+            valor={tarefasRestantes}
             icone={<FiClock />}
           />
-
         </div>
 
-        <ProgressBar porcentagem={50} />
+        <ProgressBar porcentagem={progresso} />
 
         <section className="dashboard-tasks">
-
           <h2>Tarefas Diárias</h2>
 
-          <TaskCard
-            titulo="Estudar React"
-            materia="Front-End"
-            tempo="2 horas"
-            prioridade="Alta"
-          />
-
-          <TaskCard
-            titulo="Modelagem ER"
-            materia="Banco de Dados"
-            tempo="1 hora"
-            prioridade="Média"
-          />
-
-          <TaskCard
-            titulo="Projeto Python"
-            materia="Programação"
-            tempo="3 horas"
-            prioridade="Baixa"
-          />
-
+          {tasks.length === 0 ? (
+            <p className="empty-message">
+              Nenhuma tarefa cadastrada.
+            </p>
+          ) : (
+            tasks.slice(0, 5).map((task) => (
+              <TaskCard
+                key={task.id}
+                titulo={task.titulo}
+                materia={task.materia}
+                tempo={task.tempo}
+                prioridade={task.prioridade}
+              />
+            ))
+          )}
         </section>
-
       </main>
-
     </div>
   );
 }
