@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useTasks } from "../context/TaskContext";
 
-export default function AddTaskModal() {
+import "../styles/addtaskmodal.css";
 
+export default function AddTaskModal({ isOpen, onClose }) {
   const { addTask } = useTasks();
 
   const [titulo, setTitulo] = useState("");
@@ -11,63 +12,92 @@ export default function AddTaskModal() {
   const [prioridade, setPrioridade] = useState("Média");
 
   function handleSubmit(e) {
-
     e.preventDefault();
+
+    if (!titulo || !materia || !tempo) {
+      alert("Preencha todos os campos.");
+      return;
+    }
 
     addTask({
       titulo,
       materia,
       tempo,
-      prioridade
+      prioridade,
     });
 
     setTitulo("");
     setMateria("");
     setTempo("");
+    setPrioridade("Média");
+
+    onClose();
   }
 
+  if (!isOpen) return null;
+
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="modal-overlay">
 
-      <input
-        placeholder="Título"
-        value={titulo}
-        onChange={(e) =>
-          setTitulo(e.target.value)
-        }
-      />
+      <div className="modal">
 
-      <input
-        placeholder="Matéria"
-        value={materia}
-        onChange={(e) =>
-          setMateria(e.target.value)
-        }
-      />
+        <h2>Nova Tarefa</h2>
 
-      <input
-        placeholder="Tempo"
-        value={tempo}
-        onChange={(e) =>
-          setTempo(e.target.value)
-        }
-      />
+        <form onSubmit={handleSubmit}>
 
-      <select
-        value={prioridade}
-        onChange={(e) =>
-          setPrioridade(e.target.value)
-        }
-      >
-        <option>Alta</option>
-        <option>Média</option>
-        <option>Baixa</option>
-      </select>
+          <input
+            type="text"
+            placeholder="Título da tarefa"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+          />
 
-      <button type="submit">
-        Adicionar
-      </button>
+          <input
+            type="text"
+            placeholder="Matéria"
+            value={materia}
+            onChange={(e) => setMateria(e.target.value)}
+          />
 
-    </form>
+          <input
+            type="text"
+            placeholder="Tempo estimado"
+            value={tempo}
+            onChange={(e) => setTempo(e.target.value)}
+          />
+
+          <select
+            value={prioridade}
+            onChange={(e) => setPrioridade(e.target.value)}
+          >
+            <option>Alta</option>
+            <option>Média</option>
+            <option>Baixa</option>
+          </select>
+
+          <div className="modal-buttons">
+
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={onClose}
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="submit"
+              className="save-btn"
+            >
+              Salvar
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
   );
 }

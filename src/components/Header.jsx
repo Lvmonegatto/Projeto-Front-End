@@ -1,32 +1,48 @@
+import { useState } from "react";
+
+import AddTaskModal from "./AddTaskModal";
+
 import "../styles/header.css";
 
 export default function Header({ titulo }) {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
-    <header className="header">
+    <>
+      <header className="header">
 
-      <div>
-        <h1>{titulo}</h1>
-      </div>
+        <div>
+          <h1>{titulo}</h1>
+        </div>
 
-      <div className="header-right">
+        <div className="header-right">
 
-        <button className="add-btn">
-          + Adicionar tarefa
-        </button>
+          <button
+            className="add-btn"
+            onClick={() => setOpenModal(true)}
+          >
+            + Adicionar tarefa
+          </button>
 
-        <div className="user">
+          <div className="user">
 
-          <img
-            src="https://i.pravatar.cc/40"
-            alt="perfil"
-          />
+            <img
+              src="https://i.pravatar.cc/150?img=8"
+              alt="perfil"
+            />
 
-          <span>Aluno</span>
+            <span>Aluno</span>
+
+          </div>
 
         </div>
 
-      </div>
+      </header>
 
-    </header>
+      <AddTaskModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+      />
+    </>
   );
 }
