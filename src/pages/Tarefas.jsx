@@ -20,10 +20,12 @@ export default function Tarefas() {
           tasks.map((task) => (
             <TaskCard
               key={task.id}
+              id={task.id}
               titulo={task.titulo}
               materia={task.materia}
               tempo={task.tempo}
               prioridade={task.prioridade}
+              completed={task.completed}
             />
           ))
         )}
