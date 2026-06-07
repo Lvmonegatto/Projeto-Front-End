@@ -1,34 +1,26 @@
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+.stats-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(240px,1fr));
+
+  gap:20px;
 }
 
-.dashboard-tasks {
-  margin-top: 30px;
+.dashboard-tasks{
+  margin-top:35px;
 }
 
-.dashboard-tasks h2 {
-  margin-bottom: 20px;
-  color: #0f172a;
+.dashboard-tasks h2{
+  margin-bottom:20px;
 }
 
-.empty-message {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  color: #64748b;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+.empty-message{
+  background:white;
 
-@media (max-width: 1200px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+  padding:20px;
 
-@media (max-width: 700px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
+  border-radius:18px;
+
+  color:var(--text-light);
 }

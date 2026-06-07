@@ -10,6 +10,7 @@ export default function AddTaskModal({ isOpen, onClose }) {
   const [materia, setMateria] = useState("");
   const [tempo, setTempo] = useState("");
   const [prioridade, setPrioridade] = useState("Média");
+  const [dia, setDia] = useState("Segunda");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,12 +25,14 @@ export default function AddTaskModal({ isOpen, onClose }) {
       materia,
       tempo,
       prioridade,
+      dia,
     });
 
     setTitulo("");
     setMateria("");
     setTempo("");
     setPrioridade("Média");
+    setDia("Segunda");
 
     onClose();
   }
@@ -38,13 +41,10 @@ export default function AddTaskModal({ isOpen, onClose }) {
 
   return (
     <div className="modal-overlay">
-
       <div className="modal">
-
         <h2>Nova Tarefa</h2>
 
         <form onSubmit={handleSubmit}>
-
           <input
             type="text"
             placeholder="Título da tarefa"
@@ -75,8 +75,20 @@ export default function AddTaskModal({ isOpen, onClose }) {
             <option>Baixa</option>
           </select>
 
-          <div className="modal-buttons">
+          <select
+            value={dia}
+            onChange={(e) => setDia(e.target.value)}
+          >
+            <option>Segunda</option>
+            <option>Terça</option>
+            <option>Quarta</option>
+            <option>Quinta</option>
+            <option>Sexta</option>
+            <option>Sábado</option>
+            <option>Domingo</option>
+          </select>
 
+          <div className="modal-buttons">
             <button
               type="button"
               className="cancel-btn"
@@ -91,13 +103,9 @@ export default function AddTaskModal({ isOpen, onClose }) {
             >
               Salvar
             </button>
-
           </div>
-
         </form>
-
       </div>
-
     </div>
   );
 }
