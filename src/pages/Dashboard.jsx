@@ -17,7 +17,17 @@ import "../styles/dashboard.css";
 
 export default function Dashboard() {
   const { tasks } = useTasks();
+  const prioridadeValor = {
+  Alta: 1,
+  Média: 2,
+  Baixa: 3,
+};
 
+const tarefasOrdenadas = [...tasks].sort(
+  (a, b) =>
+    prioridadeValor[a.prioridade] -
+    prioridadeValor[b.prioridade]
+);
   const total = tasks.length;
 
   const concluidas = tasks.filter(
@@ -78,7 +88,7 @@ export default function Dashboard() {
               Nenhuma tarefa cadastrada.
             </p>
           ) : (
-            tasks.slice(0, 5).map((task) => (
+            tarefasOrdenadas.slice(0, 5).map((task) => (
               <TaskCard
                 key={task.id}
                 id={task.id}

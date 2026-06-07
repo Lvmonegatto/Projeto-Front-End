@@ -7,6 +7,18 @@ import { useTasks } from "../context/TaskContext";
 export default function Tarefas() {
   const { tasks } = useTasks();
 
+  const prioridadeValor = {
+    Alta: 1,
+    Média: 2,
+    Baixa: 3,
+  };
+
+  const tarefasOrdenadas = [...tasks].sort(
+    (a, b) =>
+      prioridadeValor[a.prioridade] -
+      prioridadeValor[b.prioridade]
+  );
+
   return (
     <div className="layout">
       <Sidebar />
@@ -14,10 +26,10 @@ export default function Tarefas() {
       <main className="content">
         <Header titulo="Tarefas" />
 
-        {tasks.length === 0 ? (
+        {tarefasOrdenadas.length === 0 ? (
           <p>Nenhuma tarefa cadastrada.</p>
         ) : (
-          tasks.map((task) => (
+          tarefasOrdenadas.map((task) => (
             <TaskCard
               key={task.id}
               id={task.id}
