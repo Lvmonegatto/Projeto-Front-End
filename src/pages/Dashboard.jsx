@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import StatsCard from "../components/StatsCard";
 import ProgressBar from "../components/ProgressBar";
 import TaskCard from "../components/TaskCard";
+import WorkloadCard from "../components/WorkloadCard";
 
 import { useTasks } from "../context/TaskContext";
 
@@ -44,7 +45,19 @@ const tarefasOrdenadas = [...tasks].sort(
     total > 0
       ? Math.round((concluidas / total) * 100)
       : 0;
+    /**
+ * Soma todas as horas cadastradas.
+ * Exemplo:
+ * "2" -> 2
+ * "4" -> 4
+ */
+const horasTotais = tasks.reduce((acc, task) => {
 
+  const horas = parseInt(task.tempo) || 0;
+
+  return acc + horas;
+
+}, 0);
   return (
     <div className="layout">
       <Sidebar />
@@ -79,6 +92,7 @@ const tarefasOrdenadas = [...tasks].sort(
         </div>
 
         <ProgressBar porcentagem={progresso} />
+        <WorkloadCard horas={horasTotais} />
 
         <section className="dashboard-tasks">
           <h2>Tarefas Diárias</h2>
