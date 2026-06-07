@@ -4,7 +4,7 @@ import StatsCard from "../components/StatsCard";
 import ProgressBar from "../components/ProgressBar";
 import TaskCard from "../components/TaskCard";
 import WorkloadCard from "../components/WorkloadCard";
-
+import WeeklySummary from "../components/WeeklySummary";
 import { useTasks } from "../context/TaskContext";
 
 import {
@@ -85,6 +85,37 @@ export default function Dashboard() {
    */
   const horasTotais = Math.round(minutosTotais / 60);
 
+  /**
+ * Primeira tarefa de maior prioridade.
+ */
+const proximaTarefa =
+  tarefasOrdenadas.length > 0
+    ? tarefasOrdenadas[0].titulo
+    : null;
+
+/**
+ * Mensagem motivacional baseada no progresso.
+ */
+function gerarMensagem() {
+
+  if (progresso === 100) {
+    return "Parabéns! Todas as tarefas foram concluídas.";
+  }
+
+  if (progresso >= 70) {
+    return "Você está muito perto de concluir sua semana.";
+  }
+
+  if (progresso >= 40) {
+    return "Bom progresso! Continue avançando.";
+  }
+
+  return "Comece pelas tarefas de maior prioridade.";
+}
+
+const mensagemMotivacional =
+  gerarMensagem();
+
   return (
     <div className="layout">
       <Sidebar />
@@ -124,6 +155,12 @@ export default function Dashboard() {
 
         <WorkloadCard horas={horasTotais} />
 
+        <WeeklySummary
+        proximaTarefa={proximaTarefa}
+        pendentes={tarefasRestantes}
+        horasTotais={horasTotais}
+        mensagem={mensagemMotivacional}/>
+        
         <section className="dashboard-tasks">
 
           <h2>Tarefas Prioritárias</h2>
