@@ -33,17 +33,47 @@ export function TaskProvider({ children }) {
   }
 
   function toggleTask(id) {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              completed: !task.completed,
-            }
-          : task
-      )
-    );
-  }
+
+  const mensagens = [
+    "🎉 Excelente! Mais uma tarefa concluída.",
+    "🚀 Você está avançando muito bem.",
+    "📚 Continue assim, seu progresso está ótimo.",
+    "💪 Mais uma etapa vencida.",
+    "⭐ Parabéns pela dedicação." 
+  ];
+
+  setTasks((prev) =>
+    prev.map((task) => {
+
+      if (task.id === id) {
+
+        const novoStatus = !task.completed;
+
+        if (novoStatus) {
+
+          const mensagem =
+            mensagens[
+              Math.floor(
+                Math.random() * mensagens.length
+              )
+            ];
+
+          setTimeout(() => {
+            alert(mensagem);
+          }, 100);
+
+        }
+
+        return {
+          ...task,
+          completed: novoStatus,
+        };
+      }
+
+      return task;
+    })
+  );
+}
 
   function deleteTask(id) {
     setTasks((prev) =>

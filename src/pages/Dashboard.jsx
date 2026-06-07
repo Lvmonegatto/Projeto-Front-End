@@ -6,6 +6,7 @@ import TaskCard from "../components/TaskCard";
 import WorkloadCard from "../components/WorkloadCard";
 import WeeklySummary from "../components/WeeklySummary";
 import { useTasks } from "../context/TaskContext";
+import MotivationCard from "../components/MotivationCard";
 
 import {
   FiClipboard,
@@ -159,7 +160,12 @@ const mensagemMotivacional =
         proximaTarefa={proximaTarefa}
         pendentes={tarefasRestantes}
         horasTotais={horasTotais}
-        mensagem={mensagemMotivacional}/>
+        mensagem={mensagemMotivacional}
+      />
+
+      <MotivationCard
+        progresso={progresso}
+      />
         
         <section className="dashboard-tasks">
 
