@@ -11,53 +11,80 @@ import {
   FiClipboard,
   FiCheckCircle,
   FiAlertCircle,
-  FiClock
+  FiClock,
 } from "react-icons/fi";
 
 import "../styles/dashboard.css";
 
 export default function Dashboard() {
   const { tasks } = useTasks();
-  const prioridadeValor = {
-  Alta: 1,
-  Média: 2,
-  Baixa: 3,
-};
 
-const tarefasOrdenadas = [...tasks].sort(
-  (a, b) =>
-    prioridadeValor[a.prioridade] -
-    prioridadeValor[b.prioridade]
-);
+  /**
+   * Define a ordem de prioridade das tarefas.
+   * Utilizado para exibir primeiro as tarefas mais importantes.
+   */
+  const prioridadeValor = {
+    Alta: 1,
+    Média: 2,
+    Baixa: 3,
+  };
+
+  /**
+   * Ordena as tarefas pela prioridade.
+   */
+  const tarefasOrdenadas = [...tasks].sort(
+    (a, b) =>
+      prioridadeValor[a.prioridade] -
+      prioridadeValor[b.prioridade]
+  );
+
+  /**
+   * Quantidade total de tarefas.
+   */
   const total = tasks.length;
 
+  /**
+   * Quantidade de tarefas concluídas.
+   */
   const concluidas = tasks.filter(
     (task) => task.completed
   ).length;
 
+  /**
+   * Quantidade de tarefas com prioridade alta.
+   */
   const altaPrioridade = tasks.filter(
     (task) => task.prioridade === "Alta"
   ).length;
 
+  /**
+   * Quantidade de tarefas pendentes.
+   */
   const tarefasRestantes = total - concluidas;
 
+  /**
+   * Percentual de progresso geral.
+   */
   const progresso =
     total > 0
       ? Math.round((concluidas / total) * 100)
       : 0;
-    /**
- * Soma todas as horas cadastradas.
- * Exemplo:
- * "2" -> 2
- * "4" -> 4
- */
-const horasTotais = tasks.reduce((acc, task) => {
 
-  const horas = parseInt(task.tempo) || 0;
+  /**
+   * Soma todos os minutos planejados.
+   * Utiliza o campo tempoTotal criado no modal.
+   */
+  const minutosTotais = tasks.reduce(
+    (acc, task) => acc + (task.tempoTotal || 0),
+    0
+  );
 
-  return acc + horas;
+  /**
+   * Converte os minutos totais para horas.
+   * Será utilizado pelo indicador de sobrecarga.
+   */
+  const horasTotais = Math.round(minutosTotais / 60);
 
-}, 0);
   return (
     <div className="layout">
       <Sidebar />
@@ -66,6 +93,7 @@ const horasTotais = tasks.reduce((acc, task) => {
         <Header titulo="Dashboard" />
 
         <div className="stats-grid">
+
           <StatsCard
             titulo="Todas as tarefas"
             valor={total}
@@ -89,13 +117,16 @@ const horasTotais = tasks.reduce((acc, task) => {
             valor={tarefasRestantes}
             icone={<FiClock />}
           />
+
         </div>
 
         <ProgressBar porcentagem={progresso} />
+
         <WorkloadCard horas={horasTotais} />
 
         <section className="dashboard-tasks">
-          <h2>Tarefas Diárias</h2>
+
+          <h2>Tarefas Prioritárias</h2>
 
           {tasks.length === 0 ? (
             <p className="empty-message">
@@ -114,6 +145,7 @@ const horasTotais = tasks.reduce((acc, task) => {
               />
             ))
           )}
+
         </section>
       </main>
     </div>

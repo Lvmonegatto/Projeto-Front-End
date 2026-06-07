@@ -27,6 +27,28 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+.time-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.time-field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.time-field label{
+  font-size:14px;
+  font-weight:600;
+  color:#475569;
+}
+
+.time-field select{
+  width:100%;
+}
+
 .modal h2 {
   margin-bottom: 20px;
 }
