@@ -7,6 +7,7 @@ import WorkloadCard from "../components/WorkloadCard";
 import WeeklySummary from "../components/WeeklySummary";
 import { useTasks }from "../hooks/useTasks";
 import MotivationCard from "../components/MotivationCard";
+import PlanningSuggestion from "../components/PlanningSuggestion";
 
 import {
   FiClipboard,
@@ -166,6 +167,9 @@ const mensagemMotivacional =
       <MotivationCard
         progresso={progresso}
       />
+        <PlanningSuggestion
+          tasks={tasks}
+        />
         
         <section className="dashboard-tasks">
 
