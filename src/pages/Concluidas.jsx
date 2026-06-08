@@ -2,7 +2,7 @@ import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import TaskCard from "../components/TaskCard";
 
-import { useTasks } from "../context/TaskContext";
+import { useTasks }from "../hooks/useTasks";
 
 export default function Concluidas() {
   const { tasks } = useTasks();

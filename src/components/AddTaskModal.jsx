@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useTasks } from "../context/TaskContext";
+import { useTasks }from "../hooks/useTasks";
+import { useNotification } from "../hooks/useNotification";
 
 import "../styles/addtaskmodal.css";
 
 export default function AddTaskModal({ isOpen, onClose }) {
   const { addTask } = useTasks();
-
+  const { showNotification } = useNotification();
   // Dados principais da tarefa
   const [titulo, setTitulo] = useState("");
   const [materia, setMateria] = useState("");
@@ -28,10 +29,17 @@ export default function AddTaskModal({ isOpen, onClose }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!titulo.trim() || !materia.trim()) {
-      alert("Preencha todos os campos.");
-      return;
-    }
+     /**
+   * Valida os campos obrigatórios.
+   */
+  if (!titulo.trim() || !materia.trim()) {
+  
+    showNotification(
+      "⚠️ Preencha todos os campos obrigatórios."
+    );
+  
+    return;
+  }
 
     const tempoTotal =
       Number(horas) * 60 +

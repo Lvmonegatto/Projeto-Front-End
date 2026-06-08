@@ -1,7 +1,7 @@
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 
-import { useTasks } from "../context/TaskContext";
+import { useTasks }from "../hooks/useTasks";
 
 import "../styles/planos.css";
 

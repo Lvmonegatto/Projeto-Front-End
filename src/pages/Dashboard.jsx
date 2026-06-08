@@ -5,7 +5,7 @@ import ProgressBar from "../components/ProgressBar";
 import TaskCard from "../components/TaskCard";
 import WorkloadCard from "../components/WorkloadCard";
 import WeeklySummary from "../components/WeeklySummary";
-import { useTasks } from "../context/TaskContext";
+import { useTasks }from "../hooks/useTasks";
 import MotivationCard from "../components/MotivationCard";
 
 import {

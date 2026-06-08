@@ -1,5 +1,5 @@
 import { FiCheck, FiTrash2 } from "react-icons/fi";
-import { useTasks } from "../context/TaskContext";
+import { useTasks }from "../hooks/useTasks";
 
 import "../styles/taskcard.css";
 
