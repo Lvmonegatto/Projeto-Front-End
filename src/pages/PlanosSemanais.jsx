@@ -28,8 +28,10 @@ export default function PlanosSemanais() {
         <div className="week-grid">
           {dias.map((dia) => {
             const tarefasDoDia = tasks.filter(
-              (task) => task.dia === dia
-            );
+              (task) =>
+                task.dia === dia &&
+                !task.completed
+                );
 
             return (
               <div

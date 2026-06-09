@@ -72,12 +72,16 @@ export default function Dashboard() {
       ? Math.round((concluidas / total) * 100)
       : 0;
 
-  /**
-   * Soma todos os minutos planejados.
-   * Utiliza o campo tempoTotal criado no modal.
+   /**
+   * Considera apenas tarefas pendentes.
    */
-  const minutosTotais = tasks.reduce(
-    (acc, task) => acc + (task.tempoTotal || 0),
+  const tarefasAtivas = tasks.filter(
+    (task) => !task.completed
+  );
+  
+  const minutosTotais = tarefasAtivas.reduce(
+    (acc, task) =>
+      acc + (task.tempoTotal || 0),
     0
   );
 

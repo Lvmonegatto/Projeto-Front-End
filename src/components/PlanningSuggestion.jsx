@@ -16,11 +16,17 @@ export default function PlanningSuggestion({ tasks }) {
    * Seleciona a tarefa mais longa cadastrada.
    * Utiliza o campo tempoTotal (minutos).
    */
-  const tarefaMaisLonga = [...tasks].sort(
-    (a, b) => (b.tempoTotal || 0) - (a.tempoTotal || 0)
+  const tarefasAtivas = tasks.filter(
+    (task) => !task.completed
+  );
+
+  const tarefaMaisLonga = [...tarefasAtivas].sort(
+  (a, b) => (b.tempoTotal || 0) - (a.tempoTotal || 0)
   )[0];
 
-  if (!tarefaMaisLonga) return null;
+  if (!tarefaMaisLonga) {
+    return null;
+  }
 
   const horas = Math.ceil(
     (tarefaMaisLonga.tempoTotal || 0) / 60
