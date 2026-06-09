@@ -58,3 +58,42 @@
 
   color:white;
 }
+
+@media (max-width:768px){
+
+  .sidebar{
+
+    width:100%;
+    height:auto;
+
+    position:relative;
+
+    border-right:none;
+    border-bottom:1px solid var(--border);
+
+    padding:16px;
+  }
+
+  .logo{
+    margin-bottom:20px;
+  }
+
+  .sidebar nav{
+
+    flex-direction:row;
+
+    overflow-x:auto;
+
+    gap:10px;
+
+    padding-bottom:5px;
+  }
+
+  .sidebar nav a{
+
+    min-width:max-content;
+
+    white-space:nowrap;
+  }
+
+}

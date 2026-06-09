@@ -24,3 +24,16 @@
 
   color:var(--text-light);
 }
+
+@media (max-width:768px){
+
+  .stats-grid{
+
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-tasks h2{
+    font-size:20px;
+  }
+
+}

@@ -38,3 +38,12 @@
   color:#64748b;
   font-size:14px;
 }
+
+@media (max-width:768px){
+
+  .week-grid{
+
+    grid-template-columns:1fr;
+  }
+
+}
