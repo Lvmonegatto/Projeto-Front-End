@@ -133,7 +133,7 @@ git clone URL_DO_REPOSITORIO
 ```
 ### 2. Entrar na pasta do projeto
 ```bash
-cd speedflow
+cd Projeto-Front-End
 ```
 ### 3. Instalar dependências
 ```bash
